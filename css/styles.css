@@ -22,8 +22,8 @@ body {
     justify-content: space-around;
     align-items: center; }
     body #container #calculator {
-      height: 500px;
-      width: 350px;
+      height: 400px;
+      width: 50%;
       background-color: #c7c7c7;
       border: 1px solid #03af69;
       display: flex;
@@ -70,6 +70,14 @@ body {
           font-weight: 600; }
         body #container #calculator #btns-container .b-btn {
           color: #fff; }
+        body #container #calculator #btns-container #del {
+          grid-column-start: 1;
+          grid-column-end: 3;
+          width: 90%; }
+        body #container #calculator #btns-container #cle {
+          grid-column-start: 3;
+          grid-column-end: 5;
+          width: 90%; }
   body footer {
     position: fixed;
     bottom: 0;

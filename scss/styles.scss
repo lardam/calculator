@@ -25,8 +25,8 @@ body {
     justify-content: space-around;
     align-items: center;
     #calculator {
-      height: 500px;
-      width: 350px;
+      height: 400px;
+      width: 50%;
       background-color: #c7c7c7;
       border: 1px solid rgb(3, 175, 105);
       display: flex;
@@ -79,6 +79,16 @@ body {
             //Grid fix
             color: #fff;
           }
+        #del {
+          grid-column-start: 1;
+          grid-column-end:3;
+          width: 90%;
+        }
+        #cle {
+          grid-column-start: 3;
+          grid-column-end: 5;
+          width: 90%;
+        }
       }
     }
   }
