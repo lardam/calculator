@@ -1,11 +1,10 @@
 const input = document.getElementById('input')
 const currentOperation = document.getElementById('result')
-const inputText = input.textContent
-const currOpText = currentOperation.textContent
 
 let a = ''
 let b = ''
 let op = ''
+let res = ''
 let endOperation = false
 
 //Get buttons
@@ -36,6 +35,11 @@ del.addEventListener('click', deleteNum)
 
 function appendNumber(number) {
     input.textContent += number
+
+    if(currentOperation.textContent === "You can't divide by 0") {
+        currentOperation.textContent = ''
+        resetVar()
+    }
 }
 
 function appendOperand(operand) {
@@ -62,6 +66,7 @@ function evaluate() {
     b = input.textContent - 0
     currentOperation.textContent += input.textContent
     result()
+    errorDivByZero()
 }
 
 function result() {
@@ -94,12 +99,19 @@ function divide(a, b) {
     return a / b
 }
 
+function resetVar() {
+    a = ''
+    b = ''
+    op = ''
+}
+
+function errorDivByZero() {
+    if(op === '/' && b === 0) {
+        currentOperation.textContent = "You can't divide by 0"
+        input.textContent = ''
+    }
+}
+
 //Arreglar bug del =, agregar fix para los numeros decimales
 //Agregar fix para cuando se divide por 0, agregar fix para
 //cuando se quiera usar numeros negativos
-
-if(endOperation = true) {
-    equal.addEventListener('click', () => {
-        //currentOperation.textContent = input.textContent
-    })
-} 

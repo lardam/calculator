@@ -23,7 +23,7 @@ body {
     align-items: center; }
     body #container #calculator {
       height: 400px;
-      width: 50%;
+      width: 300px;
       background-color: #c7c7c7;
       border: 1px solid #03af69;
       display: flex;
@@ -41,11 +41,11 @@ body {
         flex-direction: column; }
         body #container #calculator #display-container #result {
           height: 32px;
-          font-size: 30px;
+          font-size: 26px;
           text-align: end; }
         body #container #calculator #display-container #input {
           height: 60%;
-          font-size: 50px;
+          font-size: 40px;
           text-align: end; }
       body #container #calculator #btns-container {
         height: 80%;
