@@ -12,6 +12,7 @@ let endOperation = false
 const numbers = document.querySelectorAll('.num-btn')
 const operators = document.querySelectorAll('.op-btn')
 const equal = document.getElementById('eq-btn')
+const negative = document.getElementById('substract')
 const decimal = document.getElementById('dec-btn')
 const del = document.getElementById('del')
 const cle = document.getElementById('cle')
@@ -28,10 +29,11 @@ operators.forEach(function(btn) {
     })
 })
 equal.addEventListener('click', evaluate)
-cle.addEventListener('click', clear)
+decimal.addEventListener('click', addDec)
 del.addEventListener('click', deleteNum)
+cle.addEventListener('click', clear)
 
-//Add num and ops to display
+//Add/delete num and ops to display
 
 function appendNumber(number) {
     input.textContent += number
@@ -41,46 +43,61 @@ function appendNumber(number) {
         resetVar()
     }
 }
-
 function appendOperand(operand) {
     a = input.textContent - 0
     input.textContent += operand
     currentOperation.textContent = input.textContent
     input.textContent = ''
+    if(operand === '-' && currentOperation.textContent === '-') {
+        currentOperation.textContent = ''
+        input.textContent = operand
+        a = -a
+    }
 }
-
 function deleteNum() {
     input.textContent = input.textContent.toString().slice(0, -1)
 }
-
 function clear() {
     input.textContent = ''
     currentOperation.textContent = ''
-    a = ''
-    b = ''
+    resetVar()
+}
+function addDec() {
+    if(input.textContent.includes('.')) {
+        
+    }
+    else {
+        input.textContent += '.'
+    }
 }
 
 //Get result
 
 function evaluate() {
     b = input.textContent - 0
-    currentOperation.textContent += input.textContent
+    currentOperation.textContent += b
     result()
     errorDivByZero()
+    resetVar()
+    endOperation = true
 }
 
 function result() {
     if (op === '+'){
-        input.textContent = add(a, b)
+        res = add(a, b)
+        input.textContent = roundUp()
     }
     else if (op === '-'){
-        input.textContent = substract(a, b)
+        res = substract(a, b)
+        input.textContent = roundUp()    
     }
     else if (op === '*'){
-        input.textContent = multiply(a, b)
+        res = multiply(a, b)  
+        input.textContent = roundUp()
     }
     else if (op === '/'){
-        input.textContent = divide(a, b)
+        res = divide(a, b)
+        input.textContent = roundUp()    
     }
 }
 
@@ -99,6 +116,8 @@ function divide(a, b) {
     return a / b
 }
 
+//Reset variables
+
 function resetVar() {
     a = ''
     b = ''
@@ -112,6 +131,8 @@ function errorDivByZero() {
     }
 }
 
-//Arreglar bug del =, agregar fix para los numeros decimales
-//Agregar fix para cuando se divide por 0, agregar fix para
-//cuando se quiera usar numeros negativos
+function roundUp() {
+    return Math.round(res * 1000) / 1000
+}
+
+//Arreglar bug del =, num negativo
