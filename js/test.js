@@ -1,5 +1,5 @@
 const input = document.getElementById('input')
-const currentOperation = document.getElementById('result')
+const currentOp = document.getElementById('result')
 
 let a = ''
 let b = ''
@@ -24,7 +24,31 @@ numbers.forEach(function(btn) {
 })
 operators.forEach(function(btn) {
     btn.addEventListener('click', () => {
-        appendOperand(btn.textContent)
+        appendOperator(btn.textContent)
         op = btn.textContent
     })
 })
+
+function appendNumber(number) {
+    input.textContent += number
+}
+
+function appendOperator(operator) {
+    if(input.textContent !== '') {
+        operations(operator)
+    }
+    else if(a === '') {
+        zeroStart(operator)
+    }
+}
+
+function operations(operator) {
+    a = input.textContent - 0
+    currentOp.textContent = a + operator
+    input.textContent = ''
+}
+
+function zeroStart(operator) {
+    a = 0
+    currentOp.textContent = a + operator
+}
