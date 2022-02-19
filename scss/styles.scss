@@ -74,6 +74,10 @@ body {
               justify-content: space-around;
               font-size: 20px;
               font-weight: 600;
+              &:hover {
+                background-color: #fff;
+                color: rgb(3, 175, 105);
+              }
           }
           .b-btn {
             //Grid fix
@@ -95,6 +99,27 @@ body {
   footer {
     position: fixed;
     bottom: 0;
-    width: 100%
+    width: 100%;
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      margin: 2px;
+      i {
+        font-size: 20px;
+      }
+    }
   }
+}
+
+@media screen and (min-width: 801px) {
+    body {
+      #container {
+        #calculator {
+          height: 410px;
+          width: 310px;
+          padding: 5px;
+        }
+      }
+    }
 }

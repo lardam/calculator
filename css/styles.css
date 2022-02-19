@@ -68,6 +68,9 @@ body {
           justify-content: space-around;
           font-size: 20px;
           font-weight: 600; }
+          body #container #calculator #btns-container .btn:hover, body #container #calculator #btns-container .b-btn:hover {
+            background-color: #fff;
+            color: #03af69; }
         body #container #calculator #btns-container .b-btn {
           color: #fff; }
         body #container #calculator #btns-container #del {
@@ -82,3 +85,16 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%; }
+    body footer a {
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      margin: 2px; }
+      body footer a i {
+        font-size: 20px; }
+
+@media screen and (min-width: 801px) {
+  body #container #calculator {
+    height: 410px;
+    width: 310px;
+    padding: 5px; } }
