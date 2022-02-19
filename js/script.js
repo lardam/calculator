@@ -1,18 +1,16 @@
 const input = document.getElementById('input')
-const currentOperation = document.getElementById('result')
+const currentOp = document.getElementById('result')
 
 let a = ''
 let b = ''
 let op = ''
-let res = ''
-let endOperation = false
+let res = 0
 
 //Get buttons
 
 const numbers = document.querySelectorAll('.num-btn')
 const operators = document.querySelectorAll('.op-btn')
 const equal = document.getElementById('eq-btn')
-const negative = document.getElementById('substract')
 const decimal = document.getElementById('dec-btn')
 const del = document.getElementById('del')
 const cle = document.getElementById('cle')
@@ -24,7 +22,7 @@ numbers.forEach(function(btn) {
 })
 operators.forEach(function(btn) {
     btn.addEventListener('click', () => {
-        appendOperand(btn.textContent)
+        appendOperator(btn.textContent)
         op = btn.textContent
     })
 })
@@ -33,55 +31,54 @@ decimal.addEventListener('click', addDec)
 del.addEventListener('click', deleteNum)
 cle.addEventListener('click', clear)
 
-//Add/delete num and ops to display
+//Add numbers and operators to the input
 
 function appendNumber(number) {
     input.textContent += number
+    res = ''
+}
 
-    if(currentOperation.textContent === "You can't divide by 0") {
-        currentOperation.textContent = ''
-        resetVar()
+function appendOperator(operator) {
+    if(input.textContent !== '') {
+        operations(operator)
+    }
+    else if(a === '') {
+        zeroStart(operator)
+    }
+    else if(op !== ''){
+        changeOp(operator)
     }
 }
-function appendOperand(operand) {
+function operations(operator) {
     a = input.textContent - 0
-    input.textContent += operand
-    currentOperation.textContent = input.textContent
+    op = operator
+    currentOp.textContent = a + operator
     input.textContent = ''
-    if(operand === '-' && currentOperation.textContent === '-') {
-        currentOperation.textContent = ''
-        input.textContent = operand
-        a = -a
-    }
 }
-function deleteNum() {
-    input.textContent = input.textContent.toString().slice(0, -1)
+function zeroStart(operator) {
+    a = 0
+    currentOp.textContent = a + operator
 }
-function clear() {
-    input.textContent = ''
-    currentOperation.textContent = ''
-    resetVar()
-}
-function addDec() {
-    if(input.textContent.includes('.')) {
-        
-    }
-    else {
-        input.textContent += '.'
-    }
+function changeOp(operator){
+    op = operator
+    currentOp.textContent = a + op
 }
 
-//Get result
+//End operation - get a response for each diferent event
 
 function evaluate() {
-    b = input.textContent - 0
-    currentOperation.textContent += b
-    result()
+    if(res === '' && input.textContent !== ''){
+        b = input.innerText - 0
+        currentOp.textContent += b
+        result()
+    }
+    else if(res !== '') {
+        restart()
+        currentOp.textContent = ''
+    }
     errorDivByZero()
-    resetVar()
-    endOperation = true
+    restart()
 }
-
 function result() {
     if (op === '+'){
         res = add(a, b)
@@ -93,11 +90,23 @@ function result() {
     }
     else if (op === '*'){
         res = multiply(a, b)  
-        input.textContent = roundUp()
+        input.textContent = res
     }
     else if (op === '/'){
         res = divide(a, b)
-        input.textContent = roundUp()    
+        res = roundUp()
+        input.textContent = res 
+    }
+}
+function restart() {
+    a = ''
+    b = ''
+    op = ''
+}
+function errorDivByZero() {
+    if(op === '/' && b === 0) {
+        currentOp.textContent = "You can't divide by 0"
+        input.textContent = ''
     }
 }
 
@@ -113,26 +122,49 @@ function multiply(a, b) {
     return a * b
 }
 function divide(a, b) {
+    if(b === 0) {
+        return null
+    }
     return a / b
 }
 
-//Reset variables
+//Allow clearing the display or delete a number
 
-function resetVar() {
-    a = ''
-    b = ''
-    op = ''
+function deleteNum() {
+    input.textContent = input.textContent.toString().slice(0, -1)
+}
+function clear() {
+    input.textContent = ''
+    currentOp.textContent = ''
+    restart()
 }
 
-function errorDivByZero() {
-    if(op === '/' && b === 0) {
-        currentOperation.textContent = "You can't divide by 0"
-        input.textContent = ''
+//Add a decimal
+
+function addDec() {
+    if(input.textContent.includes('.')) {}
+    else {
+        input.textContent += '.'
     }
 }
+
+//Don't allow number with more than 3 tenths
 
 function roundUp() {
     return Math.round(res * 1000) / 1000
 }
 
-//Arreglar bug del =, num negativo
+//Allow the use of the keyboard
+
+function keyboardInput() {
+    window.addEventListener('keydown', (e) => {
+        if (e.key >= 0 && e.key <= 9) appendNumber(e.key)
+        if (e.key === '.') addDec()
+        if (e.key === 'Backspace') deleteNum()
+        if (e.key === 'Escape') clear()
+        if (e.key === 'Enter' || e.key === '=') evaluate()
+        if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') appendOperator(e.key)
+    })
+}
+
+keyboardInput()
