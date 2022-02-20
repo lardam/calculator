@@ -139,7 +139,7 @@ function clear() {
     restart()
 }
 
-//Add a decimal
+//Add a decimal to the number
 
 function addDec() {
     if(input.textContent.includes('.')) {}
