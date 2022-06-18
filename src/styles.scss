@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+$color-a: #7A6178;
+$color-b: #7A3C74;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+body{
+  background-color: #fff;
+  color: $color-b;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  header, footer{
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #main{
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    #calculator{
+        height: 65%;
+        width: 75%;
+        border: 1px solid $color-a;
+        border-radius: 10px 10px 0 0;
+        background-color: #fff;
+        display: grid;
+        grid-template-rows: 25% 70%;
+        grid-gap: 2.5%;
+        overflow: hidden;
+        #visor{
+            background-color: $color-b;
+            color: #fff;
+            display: grid;
+            grid-template-rows: 35% 60%;
+            grid-gap: 5%;
+            #top-visor, #bottom-visor{
+                display: flex;
+                justify-content: end;
+                align-items: end;
+            }
+            #top-visor{
+                padding: 4px;
+                font-size: 1.5rem;
+            }
+            #bottom-visor{
+                padding: 6px;
+                font-size: 2.25rem;
+            }
+        }
+        #keyboard{
+            display: grid;
+            grid-template-columns: repeat(4, 25%);
+            grid-template-rows: repeat(5, 20%);
+            .calc-btn{
+                background-color: unset;
+                border: unset;
+                font-size: 1.9rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                cursor: pointer;
+            }
+            #clear{
+                font-size: 1.5rem;
+                grid-column: 1 / 3;
+            }
+            #delete{
+                font-size: 1.5rem;
+                grid-column: 3 / 5;
+            }
+        }
+    }
+  }
+  #switch-light{
+    height: 4rem;
+    width: 4rem;
+    position: absolute;
+    bottom: calc(10% + 1rem);
+    right: 1rem;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+}

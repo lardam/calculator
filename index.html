@@ -6,42 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
     <header>
-	    <h1>Calculator</h1>
+	    <h1 id="title">Calculator</h1>
 	</header>
-	<div id="container">
-	<div id="calculator">
-		<div id="display-container">
-			<p id="result"></p>
-			<p id="input"></p>
-		</div>
-		<div id="btns-container">
-            <button class="b-btn" id="del">DELETE</button>
-            <button class="b-btn" id="cle">CLEAR</button>
-            <button class="btn num-btn">9</button>
-            <button class="btn num-btn">8</button>
-            <button class="btn num-btn">7</button>
-            <button class="btn op-btn" id="divide">/</button>
-            <button class="btn num-btn">6</button>
-            <button class="btn num-btn">5</button>
-            <button class="btn num-btn">4</button>
-            <button class="btn op-btn" id="multiply">*</button>
-            <button class="btn num-btn">3</button>
-            <button class="btn num-btn">2</button>
-            <button class="btn num-btn">1</button>
-            <button class="btn op-btn" id="substract">-</button>
-            <button class="btn" id="dec-btn">.</button>
-            <button class="btn num-btn">0</button>
-            <button class="btn" id="eq-btn">=</button>
-            <button class="btn op-btn" id="add">+</button>
-		</div>
-	</div>
+    <main id="main">
+        <div id="calculator">
+            <div id="visor">
+                <div id="top-visor">
+                    <p id="top-visor-numbers"></p>
+                </div>
+                <div id="bottom-visor">
+                    <p id="bottom-visor-numbers"></p>
+                </div>
+            </div>
+            <div id="keyboard">
+                <button class="calc-btn" id="clear">clear</button>
+                <button class="calc-btn" id="delete">delete</button>
+                <button class="calc-btn num-btn">9</button>
+                <button class="calc-btn num-btn">8</button>
+                <button class="calc-btn num-btn">7</button>
+                <button class="calc-btn op-btn">/</button>
+                <button class="calc-btn num-btn">6</button>
+                <button class="calc-btn num-btn">5</button>
+                <button class="calc-btn num-btn">4</button>
+                <button class="calc-btn op-btn">*</button>
+                <button class="calc-btn num-btn">3</button>
+                <button class="calc-btn num-btn">2</button>
+                <button class="calc-btn num-btn">1</button>
+                <button class="calc-btn op-btn">-</button>
+                <button class="calc-btn" id="decimal">.</button>
+                <button class="calc-btn num-btn">0</button>
+                <button class="calc-btn" id="equal">=</button>
+                <button class="calc-btn op-btn">+</button>
+            </div>
+        </div>
+    </main>
 	<footer>
-		<p>Copyright © <script>document.write(new Date().getFullYear())</script> - lardam <a href="https://github.com/lardam"><i class="fab fa-github"></i></a></p>
+		<p id="footer-text">Copyright © <script>document.write(new Date().getFullYear())</script> - lardam <a href="https://github.com/lardam"><i class="fab fa-github"></i></a></p>
 	</footer>
+    <div id="switch-light">
+
+    </div>
 </body>
-<script src="js/script.js"></script>
+<script src="src/app.js"></script>
 </html>
