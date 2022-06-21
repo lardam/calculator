@@ -2,6 +2,7 @@
 
 $color-a: #7A6178;
 $color-b: #7A3C74;
+$sun-color: #D9D323;
 
 *{
   margin: 0;
@@ -10,9 +11,7 @@ $color-b: #7A3C74;
   font-family: 'Lato', sans-serif;
 }
 
-.light-mode{
-  background-color: #fff;
-  color: $color-b;
+body{
   height: 100vh;
   width: 100vw;
   position: relative;
@@ -21,16 +20,12 @@ $color-b: #7A3C74;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    p a{
-      color: $color-b;
-    }
     #switch-light{
       height: 2rem;
       width: 2rem;
       cursor: pointer;
       i{
         font-size: 2rem;
-        color: #D9D323;
       }
     }
   }
@@ -43,16 +38,12 @@ $color-b: #7A3C74;
         height: 75%;
         width: 75%;
         max-width: 380px;
-        border: 1px solid $color-a;
         border-radius: 10px 10px 0 0;
-        background-color: #fff;
         display: grid;
         grid-template-rows: 25% 70%;
         grid-gap: 2.5%;
         overflow: hidden;
         #visor{
-            background-color: $color-b;
-            color: #fff;
             display: grid;
             grid-template-rows: 35% 60%;
             grid-gap: 5%;
@@ -60,6 +51,10 @@ $color-b: #7A3C74;
                 display: flex;
                 justify-content: end;
                 align-items: end;
+                overflow-x: scroll;
+                &::-webkit-scrollbar {
+                  display: none;
+                }
             }
             #top-visor{
                 padding: 4px;
@@ -81,6 +76,11 @@ $color-b: #7A3C74;
                 font-weight: 800;
                 text-transform: uppercase;
                 cursor: pointer;
+                transition: color, background-color 0.1s ease;
+                &:active{
+                  background-color: $color-b;
+                  color: #fff;
+                }
             }
             #clear{
                 font-size: 1.5rem;
@@ -96,87 +96,58 @@ $color-b: #7A3C74;
 }
 
 .dark-mode{
-  height: 100vh;
-  width: 100vw;
-  position: relative;
   background-color: $color-a;
   color: #fff;
-  overflow: hidden;
-  header, footer{
-    height: 10%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    p a{
-      color: #fff;
+  header #switch-light i{
+      color: #f2f2f2;
     }
-    #switch-light{
-      height: 2rem;
-      width: 2rem;
-      cursor: pointer;
-      i{
-        font-size: 2rem;
-        color: #f2f2f2;
+  #main{
+    #calculator{
+      border: 1px solid #fff;
+      background-color: #000;
+      #visor{
+        background-color: $color-a;
+        color: #fff;
+      }
+      #keyboard .calc-btn{
+        color: #fff;
       }
     }
   }
+  footer p a{
+    color: #fff;
+  }
+}
+
+.light-mode{
+  background-color: #fff;
+  color: $color-b;
+  header #switch-light i{
+    color: $sun-color;
+  }
   #main{
-    height: 80%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     #calculator{
-      height: 75%;
-      width: 75%;
-      max-width: 380px;
-      border: 1px solid #fff;
-      border-radius: 10px 10px 0 0;
-      background-color: #000;
-      display: grid;
-      grid-template-rows: 25% 70%;
-      grid-gap: 2.5%;
-      overflow: hidden;
+      border: 1px solid $color-a;
+      background-color: #fff;
       #visor{
-          background-color: $color-a;
-          color: #fff;
-          display: grid;
-          grid-template-rows: 35% 60%;
-          grid-gap: 5%;
-          #top-visor, #bottom-visor{
-              display: flex;
-            justify-content: end;
-              align-items: end;
-          }
-          #top-visor{
-              padding: 4px;
-              font-size: 1.5rem;
-          }
-          #bottom-visor{
-              padding: 6px;
-              font-size: 2.25rem;
-          }
+        background-color: $color-b;
+        color: #fff;
       }
-      #keyboard{
-          display: grid;
-          grid-template-columns: repeat(4, 25%);
-          grid-template-rows: repeat(5, 20%);
-          .calc-btn{
-            background-color: unset;
-            border: unset;
-            color: #fff;
-            font-size: 1.9rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-          }
-          #clear{
-              font-size: 1.5rem;
-              grid-column: 1 / 3;
-          }
-          #delete{
-              font-size: 1.5rem;
-              grid-column: 3 / 5;
-          }
+    }
+  }
+  footer p a{
+      color: $color-b;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  body{
+    #main #calculator #visor{
+      #top-visor{
+        font-size: 2.25rem;
+      }
+      #bottom-visor{
+        font-size: 3.5rem;
       }
     }
   }

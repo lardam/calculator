@@ -1,8 +1,8 @@
 const input = document.getElementById('bottom-visor-numbers')
 const currentOp = document.getElementById('top-visor-numbers')
 
-let a = ''
-let b = ''
+let a 
+let b 
 let op = ''
 let res = 0
 
@@ -36,6 +36,16 @@ cle.addEventListener('click', clear)
 function appendNumber(number) {
     input.textContent += number
     res = ''
+    //Max characters
+
+    if(input.textContent.length > 11){
+        clear()
+        errorDigits()
+    }
+}
+
+function errorDigits(){
+    currentOp.textContent = 'Error - max digits (11)'
 }
 
 function appendOperator(operator) {
@@ -69,7 +79,7 @@ function changeOp(operator){
 function evaluate() {
     if(res === '' && input.textContent !== ''){
         b = input.innerText - 0
-        currentOp.textContent += b
+        currentOp.textContent += " " + b
         result()
     }
     else if(res !== '') {
