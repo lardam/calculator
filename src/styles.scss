@@ -10,7 +10,7 @@ $color-b: #7A3C74;
   font-family: 'Lato', sans-serif;
 }
 
-body{
+.light-mode{
   background-color: #fff;
   color: $color-b;
   height: 100vh;
@@ -21,6 +21,18 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    p a{
+      color: $color-b;
+    }
+    #switch-light{
+      height: 2rem;
+      width: 2rem;
+      cursor: pointer;
+      i{
+        font-size: 2rem;
+        color: #D9D323;
+      }
+    }
   }
   #main{
     height: 80%;
@@ -28,8 +40,9 @@ body{
     justify-content: space-around;
     align-items: center;
     #calculator{
-        height: 65%;
+        height: 75%;
         width: 75%;
+        max-width: 380px;
         border: 1px solid $color-a;
         border-radius: 10px 10px 0 0;
         background-color: #fff;
@@ -80,16 +93,91 @@ body{
         }
     }
   }
-  #switch-light{
-    height: 4rem;
-    width: 4rem;
-    position: absolute;
-    bottom: calc(10% + 1rem);
-    right: 1rem;
-    background-color: #fff;
-    border: 1px solid #000;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
+}
+
+.dark-mode{
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: $color-a;
+  color: #fff;
+  overflow: hidden;
+  header, footer{
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    p a{
+      color: #fff;
+    }
+    #switch-light{
+      height: 2rem;
+      width: 2rem;
+      cursor: pointer;
+      i{
+        font-size: 2rem;
+        color: #f2f2f2;
+      }
+    }
+  }
+  #main{
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    #calculator{
+      height: 75%;
+      width: 75%;
+      max-width: 380px;
+      border: 1px solid #fff;
+      border-radius: 10px 10px 0 0;
+      background-color: #000;
+      display: grid;
+      grid-template-rows: 25% 70%;
+      grid-gap: 2.5%;
+      overflow: hidden;
+      #visor{
+          background-color: $color-a;
+          color: #fff;
+          display: grid;
+          grid-template-rows: 35% 60%;
+          grid-gap: 5%;
+          #top-visor, #bottom-visor{
+              display: flex;
+            justify-content: end;
+              align-items: end;
+          }
+          #top-visor{
+              padding: 4px;
+              font-size: 1.5rem;
+          }
+          #bottom-visor{
+              padding: 6px;
+              font-size: 2.25rem;
+          }
+      }
+      #keyboard{
+          display: grid;
+          grid-template-columns: repeat(4, 25%);
+          grid-template-rows: repeat(5, 20%);
+          .calc-btn{
+            background-color: unset;
+            border: unset;
+            color: #fff;
+            font-size: 1.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+          }
+          #clear{
+              font-size: 1.5rem;
+              grid-column: 1 / 3;
+          }
+          #delete{
+              font-size: 1.5rem;
+              grid-column: 3 / 5;
+          }
+      }
+    }
   }
 }
